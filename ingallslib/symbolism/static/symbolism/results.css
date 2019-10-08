@@ -1,0 +1,372 @@
+@import url('https://fonts.googleapis.com/css?family=Nanum+Myeongjo&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Neuton&display=swap');
+
+
+
+
+input#button-submit {
+
+  background:none;
+  margin-top: 10px;
+  border:none;
+  padding:0px;
+  font-family: 'Nanum Myeongjo', serif;
+  color:#2B5A8B;
+  font-size: 17px;
+  cursor: pointer;
+
+
+}
+input#button-submit:hover{
+  color: #D0584D;
+  text-decoration: underline;
+
+}
+
+a {
+  text-decoration: none;
+  color:#2B5A8B;
+}
+
+a:hover{
+  color: #D0584D;
+  text-decoration: underline;
+}
+
+.modal-body li{
+  display: inline-block;
+  list-style-type: none;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.result-header{
+
+  text-align: left;
+  /*background-color: #2A2A2A;*/
+
+  padding: 10px;
+
+
+}
+
+.result-header span{
+  display:inline-block;
+
+  font-size: 20px;
+
+  /*color: #96C1FF; light-blue */
+  color: #2B5A8B;
+  /*color: #FFA896; orange*/
+  /*color: #BF2606; red */
+
+}
+
+.search-bar {
+
+  background-color: #F0F0F0;
+  box-shadow: 1px 1px 3px lightgrey;
+
+}
+
+.search-bar form{
+  margin: auto;
+  width: 520px;
+  padding: 30px;
+
+}
+
+.search-bar input{
+  background-color: #F0F0F0;
+  width: 520px;
+  height: 20px;
+  color:#B4B4B4;
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 15px;
+  caret-color: #B4B4B4;
+  border:none;
+  border-bottom: #B4B4B4 solid 2px;
+
+
+
+
+
+}
+
+
+::placeholder{
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 20px;
+  color: #B4B4B4;
+
+}
+
+.sort-tool{
+
+  display: inline-block;
+  float: right;
+
+
+  padding-right: 30px;
+  font-size: 15px;
+
+}
+
+.sort-tool span, #year-btn, #author-btn {
+  cursor: pointer;
+  color:#2B5A8B;
+
+}
+
+.sort-tool span:hover, #year-btn:hover, #author-btn:hover{
+  color: #D0584D;
+  text-decoration: underline;
+}
+.result-numb{
+
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 17px;
+  padding:10px;
+  border-bottom: solid 1px #E8E8E8;
+  margin-bottom: 20px;
+  width: 965px;
+  float: right;
+
+}
+
+
+
+
+
+.results-content {
+  margin-top: 10px;
+  width:100%;
+  display: grid;
+  grid-template-columns: 20% 80%;
+
+}
+
+.side-navigation{
+  box-shadow: 1px 1px 5px;
+  border-radius: 4px;
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 14px;
+  height: 1000px;
+  text-align: left;
+  margin-top: 62px;
+  margin-left: 30px;
+  padding-left: 30px;
+
+}
+
+.side-navigation p{
+  margin-top: 10px;
+  margin-top: 10px;
+}
+
+
+
+
+.side-navigation li{
+  list-style-type: none;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+
+
+
+
+/*
+.term-number-results{
+
+   margin-left: 40px;
+
+
+
+}*/
+
+.result-card{
+  font-family: 'Neuton';
+  box-shadow: 0px 5px 5px;
+  /*border: #D5D5D5 solid 1px;*/
+
+
+  border-radius: 4px;
+
+  background-color: white;
+
+
+  display:grid;
+  grid-template-columns: 20% 80%;
+  margin-left: 40px;
+  margin-bottom: 20px;
+  width: 720px;
+
+
+
+
+
+
+}
+
+
+
+.result-card-text{
+  display: inline-block;
+  margin-left: 20px;
+
+
+}
+
+
+.result-card-title{
+  /*color:#5D82AE;*/
+  /*color: #4388D1;*/
+  /*color: #2B5A8B;*/
+ /*  color:#B4B4B4;*/
+
+}
+
+.result-card-title a{
+    color:#424242;
+    font-size: 17px;
+
+}
+
+.result-card-year, .result-card-lang{
+  display: inline-block;
+  color: darkgrey;
+}
+
+
+
+.result-card-author{
+  margin-top: -10px;
+
+  color: grey;
+
+}
+
+.result-filters p{
+  margin-top: 30px;
+  font-size: 17px;
+}
+
+.result-filters div{
+  margin-top: 15px;
+}
+
+.term-required{
+
+  color: red;
+  font-weight: bold;
+  font-size:15px;
+  display:none;
+  position:absolute;
+  right:380px;
+  top:100px;
+}
+
+
+#content-image{
+
+display: inline-block;
+
+
+  height:190px;
+  width: 150px;
+  border-radius: 3px;
+
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left;
+
+}
+
+
+/*Modal CSS****/
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  -webkit-animation-name: fadeIn; /* Fade in the background */
+  -webkit-animation-duration: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 0.4s
+}
+
+/* Modal Content */
+.modal-content {
+
+  border-radius: 4px;
+  box-shadow: 0px 5px 5px grey;
+  background-color: #fefefe;
+  margin-top:100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 1000px;
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideIn;
+  animation-duration: 0.4s
+}
+
+/* The Close Button */
+.close {
+  color: grey;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+
+  color: grey;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  color: grey;
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+  from {bottom: -300px; opacity: 0}
+  to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+  from {bottom: -300px; opacity: 0}
+  to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+}

@@ -1,0 +1,265 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+      <link rel="stylesheet" type="text/css" href="{% static 'symbolism/main.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'symbolism/results.css' %}">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>Library & Museum Archives</title>
+</head>
+<body>
+  <div class="result-header">
+       <span><a href="/">Museum & Library Archives</a></span>
+  </div>
+
+  <div class="search-bar">
+    <form>
+      <input id="terminput" value="{{currentterm}}"form="mainform" action='/discover' name="term" placeholder="Search" type="text">
+      </form>
+      <span class="animated fadeIn term-required">Search term required</span>
+  </div>
+
+
+  <!--- Modals ----->
+  <div id="year-modal" class="modal">
+
+    <!-- Year Option Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2>Year</h2>
+      </div>
+      <form name="centralform" id="mainform" action="/discover/">
+        <div class="modal-body">
+
+          {% for date in yearoptions %}
+          <li>
+            <input type="checkbox" name="year" value="{{date}}"
+
+            {% if date in filterform.year %}
+            checked
+            {% endif %}>
+            {{ date }}
+          </input>
+        </li>
+          {% endfor %}
+        </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Author Option Modal content -->
+  <div id="author-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2>Author</h2>
+      </div>
+
+      <div class="modal-body">
+        {% for author in authoroptions %}
+        <p>
+          <input type="checkbox" name="author" value="{{author}}"
+          {% if author in filterform.author %}
+          checked
+          {% endif %}>
+          {{ author }}
+        </input>
+        </p>
+        {% endfor %}
+    </div>
+    <div class="modal-footer">
+      <!---<p><a href="#">Apply</a></p>--->
+    </div>
+  </div>
+</div>
+<!--End of Modals ---->
+
+
+  <div class="results-content">
+    <div class="side-navigation">
+      <div class="result-filters">
+        <p>Filters</p>
+        <!---<div><input class="filter" name="title" placeholder="Search title..." type="text"/></div>-->
+        <div>
+          Year
+          <span style="font-size:12px">
+            | <span id="year-btn" >View All >>></span>
+          </span>
+        </div>
+
+        <div>
+          Author
+          <span style="font-size:12px">
+            | <span id="author-btn">View All >>></span>
+          </span>
+        </div>
+
+        <div>
+          Language
+          {% for language in langoptions %}
+          <li>
+            <input type="checkbox" name="lang" value="{{language}}"
+            {% if language in filterform.lang %}
+                  checked
+            {% endif %}>
+            {{language}}
+            </input>
+          </li>
+          {% endfor %}
+        </div>
+        <!---<div>Topics & Subjects</div>-->
+        <input id="button-submit" type="submit" value="Apply">
+      </form>
+      </div>
+    </div>
+
+    <div class="search-results">
+      <div class="result-numb">
+        <span class="result-number">{{searchresultscount}} Results</span>
+        <div class="sort-tool">
+        <span onclick="sortResults('relevance')">Relevance</span> |
+        <span onclick="sortResults('mostrecent')">Most Recent</span> |
+        <span onclick="sortResults('earliest')">Earliest</span>
+
+      </div>
+      </div>
+
+      {% for result in searchresults %}
+      <div class="result-card">
+        <div id="content-image" style='background-image:url({{result.image}})'></div>
+        <div class="result-card-text">
+          <p class="result-card-title"><a href="{{result.sourceurl}}" target="_blank">{{result.title}}</a></p>
+          {% if result.author is not None %}
+          <p class="result-card-author">{{result.author}}</p>
+          {% endif %}
+
+          {% if result.year is not None %}
+          <span class="result-card-year">Published {{result.year}} |</span>
+          {% endif %}
+          <span class="result-card-lang">{{result.lang}}</span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  </body>
+  <script>
+
+
+  function sortResults(sortby){
+
+    if(sortby === 'mostrecent'){
+            ///If results are already sorted by most recent leave the page as it is
+            if(window.location.href.includes('&sort=-1') || window.location.href.includes('?sort=-1'))
+            {
+              return
+            }
+
+            ////If the URL does not contain discover, then initiate sort on default homepage results
+            if(!window.location.href.includes('discover')){
+              //Replace any possible occurance of sorting by 'earliest'
+              var checkUrl = window.location.href.replace(/[?]sort=1|&sort=1/gi, "")
+              window.location.assign(checkUrl + '?sort=-1')
+            }
+            ///If the URL contains discover, then initiate sort on discover results
+            if(window.location.href.includes('discover')){
+
+              //Replace any possible occurance of sorting by 'earliest'
+              var checkUrl = window.location.href.replace(/[?]sort=1|&sort=1/gi, "")
+              window.location.assign(checkUrl + '&sort=-1')
+            }
+
+
+    }else if(sortby ==='earliest'){
+            ///If results are already sorted by earliest leave the page as it is
+            if(window.location.href.includes('&sort=1') || window.location.href.includes('?sort1'))
+            {
+
+              return
+            }
+
+            ////If the URL does not contain discover, then initiate sort on default homepage results
+            if(!window.location.href.includes('discover')){
+                  console.log(window.location.href)
+              //Replace any possible occurance of sorting by 'most recent'
+              var checkUrl = window.location.href.replace(/[?]sort=-1|&sort=-1/gi, "")
+              window.location.assign(checkUrl + '?sort=1')
+
+            }
+            ///If the URL contains discover, then initiate sort on discover results
+            if(window.location.href.includes('discover')){
+
+              //Replace any possible occurance of sorting by 'earliest'
+              var checkUrl = window.location.href.replace(/[?]sort=-1|&sort=-1/gi, "")
+              window.location.assign(checkUrl + '&sort=1')
+            }
+
+
+    }else if(sortby === 'relevance'){
+            //If the current url does not contain the word 'sort', nothing needs to be sorted
+            if(!window.location.href.includes('sort'))
+            {
+              return
+            }
+            /////Remove any occurance of a sorting string
+            var relevanceUrl = window.location.href.replace(/&sort=1|&sort=-1|[?]sort=1|[?]sort=-1/gi, "")
+            window.location.assign(relevanceUrl)
+          }
+  }
+
+  ///Function to clear filter
+
+  // Get the modal
+  var yearModal = document.getElementById("year-modal");
+  var authorModal = document.getElementById("author-modal");
+
+  // Get the button that opens the modal
+  var yearButton = document.getElementById("year-btn");
+  var authorButton = document.getElementById("author-btn")
+
+  // Get the <span> element that closes the modal
+var yearSpan = document.getElementsByClassName("close")[0];
+var authorSpan = document.getElementsByClassName("close")[1];
+
+yearButton.onclick = function(){
+  yearModal.style.display = "block";
+}
+
+authorButton.onclick = function(){
+
+  authorModal.style.display = "block";
+
+}
+
+// When the user clicks on <span> (x), close the modal
+yearSpan.onclick = function() {
+
+  yearModal.style.display = "none";
+
+}
+authorSpan.onclick = function() {
+
+  authorModal.style.display = "none";
+
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == yearModal || event.target == authorModal) {
+    yearModal.style.display = "none";
+    authorModal.style.display = "none";
+  }
+}
+
+
+
+
+  </script>
+  </html>

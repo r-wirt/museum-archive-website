@@ -1,0 +1,58 @@
+/*@import url('https://fonts.googleapis.com/css?family=Montserrat:200');*/
+@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Nanum+Myeongjo&display=swap');
+
+
+body{
+  font-family: 'Nanum Myeongjo', serif;
+  color: grey;
+ padding: 0px;
+ margin:0px;
+
+
+}
+
+.nav-bar{
+
+  text-align: center;
+}
+
+.nav-bar span{
+
+  margin-right: 100px;
+}
+.home-title{
+
+  font-size: 50px;
+  text-align: center;
+  margin-top: 200px;
+  margin-bottom: 20px;
+  color: #2B5A8B;
+
+
+
+}
+
+
+.home-search{
+  z-index: 1;
+  position:sticky;
+  width:500px;
+  height:50px;
+  margin: auto;
+}
+
+.home-search input{
+
+  font-size: 20px;
+  height: 50px;
+  width: 500px;
+  border-radius: 4px;
+  box-shadow: 5px 5px 10px grey;
+  padding-left: 10px;
+}
+
+
+::placeholder{
+  font-family: 'Nanum Myeongjo', serif;
+}
